@@ -8,10 +8,33 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-list>
-    <button ion-item *ngFor="let item of list_itens">
-      {{ item.nome }}
-    </button>
 
-  </ion-list>
+  <ion-card *ngFor="let item of list_itens">
+
+    <ion-item>
+      <h2>{{item.nome}}</h2>
+      <p>{{item.preco}}</p>
+    </ion-item>
+    <img src="../../assets/imgs/api.png">
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12 Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comments</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          11h ago
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
 </ion-content>
