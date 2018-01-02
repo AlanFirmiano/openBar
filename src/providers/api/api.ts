@@ -1,7 +1,6 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {Platform} from "ionic-angular";
 
 /*
   Generated class for the ApiProvider provider.
@@ -13,8 +12,7 @@ import {Platform} from "ionic-angular";
 export class ApiProvider {
   basepath = "http://localhost:8080";
   constructor(
-    public http: Http,
-    private platform:Platform
+    public http: Http
   )
   {
   }

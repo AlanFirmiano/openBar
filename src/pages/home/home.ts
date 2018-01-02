@@ -4,12 +4,13 @@ import {ApiProvider} from "../../providers/api/api";
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers:[
+    ApiProvider
+  ]
 })
 export class HomePage {
-  public list_itens = new Array<any>();
-  public idt:number;
-  public name:string;
+  public list_itens:any[] = [];
   public loader;
   public refresher;
   public isRefreshing:boolean = false;
@@ -30,7 +31,7 @@ export class HomePage {
   }
   abrirCarregandoHome() {
     this.loader = this.loadingCtrl.create({
-      content: "Carregando Ações..."
+      content: "Carregando Itens..."
     });
     this.loader.present();
   }
@@ -45,7 +46,7 @@ export class HomePage {
       res=>{
         const response = (res as any);
         const objeto = JSON.parse(response._body);
-        this.list_itens = objeto.data;
+        this.list_itens = objeto;
 
         this.fecharCarregandoHome();
         if(this.isRefreshing){
