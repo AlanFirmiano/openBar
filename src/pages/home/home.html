@@ -13,14 +13,13 @@
 
     <ion-item>
       <h2>{{item.nome}}</h2>
-      <p>{{item.preco}}</p>
     </ion-item>
-    <img src="../../assets/imgs/api.png">
+    <img src='../../assets/imgs/{{item.id}}.jpg' >
     <ion-row>
       <ion-col>
         <button ion-button icon-left clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>12 Likes</div>
+          <div>{{item.preco}}</div>
         </button>
       </ion-col>
       <ion-col>
