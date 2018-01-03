@@ -1,38 +1,44 @@
 <ion-header>
   <ion-navbar>
-    <ion-title><ion-icon name="beer"></ion-icon> OpenBar</ion-title>
+    <ion-title class="text-md-primary"><ion-icon name="beer"></ion-icon> OpenBar</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let item of list_itens">
+  <ion-card *ngFor="let item of list_itens" class="myCard">
 
     <ion-item>
-      <h2>{{item.nome}}</h2>
+      <h2 class="text-md-primary"><b>{{item.nome}}</b></h2>
+      <ion-fab right top>
+        <button ion-fab>
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
+      <img src='../../assets/imgs/{{item.id}}.jpg' >
     </ion-item>
-    <img src='../../assets/imgs/{{item.id}}.jpg' >
+
+
     <ion-row>
+
       <ion-col>
+
         <button ion-button icon-left clear small>
-          <ion-icon name="thumbs-up"></ion-icon>
-          <div>{{item.preco}}</div>
+          <b>R</b>
+          <ion-icon name="logo-usd"></ion-icon>
+          <div><b>{{item.preco}}</b></div>
         </button>
       </ion-col>
       <ion-col>
         <button ion-button icon-left clear small>
           <ion-icon name="text"></ion-icon>
-          <div>4 Comments</div>
+          <div>{{item.tipo.nome}}</div>
         </button>
       </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          11h ago
-        </ion-note>
-      </ion-col>
+
     </ion-row>
 
   </ion-card>
