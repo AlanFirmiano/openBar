@@ -6,6 +6,42 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
+  <ion-card *ngFor="let item of list_ranking" class="myCard">
+
+    <ion-item>
+      <h2 class="text-md-primary"><b>{{item.nome}}</b></h2>
+      <ion-fab right top>
+        <button ion-fab>
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
+      <img src='../../assets/imgs/{{item.id}}.jpg' >
+    </ion-item>
+
+
+    <ion-row>
+
+      <ion-col>
+
+        <button ion-button icon-left clear small>
+          <b>R</b>
+          <ion-icon name="logo-usd"></ion-icon>
+          <div><b>{{item.preco}}</b></div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>{{item.tipo.nome}}</div>
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-card>
 </ion-content>

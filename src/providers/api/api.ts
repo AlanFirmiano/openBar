@@ -16,11 +16,12 @@ export class ApiProvider {
   )
   {
   }
-
+  getListRanking(){
+    return this.http.get(this.basepath+"/itens/byRanking");
+  }
   getListItens(){
     return this.http.get(this.basepath+"/itens");
   }
-
   getListVendas(){
     return this.http.get(this.basepath+"/vendas");
   }
