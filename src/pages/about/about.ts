@@ -47,7 +47,6 @@ export class AboutPage {
         const response = (res as any);
         const objeto = JSON.parse(response._body);
         this.list_ranking = objeto;
-        console.log(this.list_ranking);
         this.fecharCarregandoHome();
         if(this.isRefreshing){
           this.refresher.complete();
@@ -65,7 +64,7 @@ export class AboutPage {
     );
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.initializeItems();
   }
 }
