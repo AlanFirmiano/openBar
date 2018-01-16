@@ -40,8 +40,8 @@ export class HomePage {
     this.loader.dismiss();
   }
 
-  teste(id:number){
-    console.log("clicou no "+id);
+  addCarinho(item:any){
+    console.log("clicou no "+item.id+" : "+item.nome);
   }
   initializeItems() {
     this.abrirCarregandoHome();
