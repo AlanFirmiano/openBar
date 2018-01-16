@@ -40,6 +40,9 @@ export class HomePage {
     this.loader.dismiss();
   }
 
+  teste(id:number){
+    console.log("clicou no "+id);
+  }
   initializeItems() {
     this.abrirCarregandoHome();
     this.apiProvider.getListItens().subscribe(
