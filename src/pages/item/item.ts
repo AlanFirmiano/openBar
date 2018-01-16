@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {ApiProvider} from "../../providers/api/api";
+import {ContactPage} from "../carrinho/contact";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-item',
+  templateUrl: 'item.html',
   providers:[
     ApiProvider
   ]
 })
-export class HomePage {
+export class ItemPage {
   public list_itens:any[] = [];
   public loader;
   public refresher;
@@ -29,14 +30,14 @@ export class HomePage {
     this.isRefreshing = true;
     this.initializeItems();
   }
-  abrirCarregandoHome() {
+  abrirCarregandoItem() {
     this.loader = this.loadingCtrl.create({
       content: "Carregando Itens..."
     });
     this.loader.present();
   }
 
-  fecharCarregandoHome(){
+  fecharCarregandoItem(){
     this.loader.dismiss();
   }
 
@@ -44,14 +45,14 @@ export class HomePage {
     console.log("clicou no "+item.id+" : "+item.nome);
   }
   initializeItems() {
-    this.abrirCarregandoHome();
+    this.abrirCarregandoItem();
     this.apiProvider.getListItens().subscribe(
       res=>{
         const response = (res as any);
         const objeto = JSON.parse(response._body);
         this.list_itens = objeto;
 
-        this.fecharCarregandoHome();
+        this.fecharCarregandoItem();
         if(this.isRefreshing){
           this.refresher.complete();
           this.isRefreshing = false;
@@ -59,7 +60,7 @@ export class HomePage {
       },
       err=>{
         console.log(err);
-        this.fecharCarregandoHome();
+        this.fecharCarregandoItem();
         if(this.isRefreshing){
           this.refresher.complete();
           this.isRefreshing = false;
@@ -70,5 +71,11 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.initializeItems();
+  }
+
+  navigate(objSelecionado){
+    this.navCtrl.push(ContactPage, {
+      item: objSelecionado
+    });
   }
 }

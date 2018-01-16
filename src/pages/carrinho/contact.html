@@ -9,6 +9,8 @@
 <ion-content>
   <h2>Carrinho</h2>
 
-  <h3>itens</h3>
+  <div *ngFor="let item of list_itens">
+    <h3>{{item.nome}}</h3>
+  </div>
   <h2>Total:0,00</h2>
 </ion-content>
