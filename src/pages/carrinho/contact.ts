@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {ApiProvider} from "../../providers/api/api";
 
 @Component({
@@ -11,21 +11,60 @@ import {ApiProvider} from "../../providers/api/api";
 })
 export class ContactPage {
   public list_carrinho:any[] = [];
-  item:any;
+  public loader;
+  public refresher;
+  public isRefreshing:boolean = false;
+
   constructor(
-    private navParams :NavParams,
-    public navCtrl: NavController) {
-    this.carregar();
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private apiProvider:ApiProvider,
+    public loadingCtrl: LoadingController)
+  {
   }
 
-  adicionar(item:any){
-    this.list_carrinho.push(item);
-    console.log(this.list_carrinho);
+  doRefresh(refresher) {
+    this.refresher = refresher;
+    this.isRefreshing = true;
+    this.initializeItems();
   }
-  carregar(){
-    this.item = this.navParams.get("item");
+  abrirCarregandoHome() {
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando Ranking..."
+    });
+    this.loader.present();
+  }
 
-    this.adicionar(this.item);
+  fecharCarregandoHome(){
+    this.loader.dismiss();
+  }
+
+  initializeItems() {
+    this.abrirCarregandoHome();
+    this.apiProvider.getListVendas().subscribe(
+      res=>{
+        const response = (res as any);
+        const objeto = JSON.parse(response._body);
+        this.list_carrinho = objeto;
+        this.fecharCarregandoHome();
+        if(this.isRefreshing){
+          this.refresher.complete();
+          this.isRefreshing = false;
+        }
+      },
+      err=>{
+        console.log(err);
+        this.fecharCarregandoHome();
+        if(this.isRefreshing){
+          this.refresher.complete();
+          this.isRefreshing = false;
+        }
+      }
+    );
+  }
+
+  ionViewDidLoad() {
+    this.initializeItems();
   }
 
 }
