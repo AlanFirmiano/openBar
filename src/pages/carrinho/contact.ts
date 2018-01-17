@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
+import {ApiProvider} from "../../providers/api/api";
 
 @Component({
   selector: 'page-contact',
-  templateUrl: 'contact.html'
+  templateUrl: 'contact.html',
+  providers:[
+    ApiProvider
+  ]
 })
 export class ContactPage {
-  list_itens:any[] = [];
+  public list_carrinho:any[] = [];
   item:any;
   constructor(
     private navParams :NavParams,
@@ -15,8 +19,8 @@ export class ContactPage {
   }
 
   adicionar(item:any){
-    this.list_itens.push(item);
-    console.log(this.list_itens);
+    this.list_carrinho.push(item);
+    console.log(this.list_carrinho);
   }
   carregar(){
     this.item = this.navParams.get("item");
