@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoadingController, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from "../../providers/api/api";
 import { ContactPage } from "../carrinho/contact";
-
+import { Item } from "../../models/item";
 @Component({
   selector: 'page-item',
   templateUrl: 'item.html',
@@ -41,8 +41,9 @@ export class ItemPage {
     this.loader.dismiss();
   }
 
-  addCarinho(item:any){
+  addCarinho(item: Item){
     console.log("clicou no "+item.id+" : "+item.nome);
+
   }
 
   initializeItems() {
