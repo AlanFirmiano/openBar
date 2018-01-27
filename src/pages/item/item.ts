@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {LoadingController, NavController, NavParams} from 'ionic-angular';
-import {ApiProvider} from "../../providers/api/api";
-import {ContactPage} from "../carrinho/contact";
+import { LoadingController, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from "../../providers/api/api";
+import { ContactPage } from "../carrinho/contact";
 
 @Component({
   selector: 'page-item',
@@ -44,6 +44,7 @@ export class ItemPage {
   addCarinho(item:any){
     console.log("clicou no "+item.id+" : "+item.nome);
   }
+
   initializeItems() {
     this.abrirCarregandoItem();
     this.apiProvider.getListItens().subscribe(
@@ -74,8 +75,8 @@ export class ItemPage {
   }
 
   navigate(objSelecionado){
-    this.navCtrl.push(ContactPage, {
+    this.navCtrl.setRoot(ContactPage, {
       item: objSelecionado
-    });
+    })
   }
 }
